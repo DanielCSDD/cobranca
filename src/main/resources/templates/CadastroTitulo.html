@@ -49,7 +49,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="inputValor">Valor</label>
                 <div class="col-sm-2">
-                    <input class="form-control" id="inputValor" name="valor" onKeyPress="return(MascaraMoeda(this,'.','.',event))"
+                    <input class="form-control" id="inputValor" name="valor"
+                           onKeyPress="return(MascaraMoeda(this,'.',',',event))"
                            placeholder="0,00" required type="text">
                     <div class="invalid-feedback">
                         Por favor, preencha corretamente o campo: Valor.
