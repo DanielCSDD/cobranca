@@ -2,6 +2,8 @@ package com.algaworks.cobranca.model;
 
 import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,9 +21,11 @@ public class Titulo {
     @Column(name = "descricao")
     private String descricao;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
+    @NumberFormat(pattern = "#,##0.00")
     @Column(name = "valor")
     private BigDecimal valor;
 
