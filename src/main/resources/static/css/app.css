@@ -35,3 +35,10 @@ label {
 .row {
     margin: 5px;
 }
+
+/* Ajustando as margens do alert presente no formulário. */
+.alert {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
