@@ -1,0 +1,44 @@
+/* Importando arquivos de font de texto externo para o projeto. */
+@font-face {
+    font-family: 'SpaceGrotesk-Bold';
+    src: url('../fonts/texto/SpaceGrotesk-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SpaceGrotesk-Regular';
+    src: url('../fonts/texto/SpaceGrotesk-Regular.ttf') format('truetype');
+}
+
+/* Definindo o tipo de fonte de texto para o copo da página. */
+body {
+    font-family: "SpaceGrotesk-Regular", serif;
+}
+
+/* Definindo o tipo de fonte de texto para as tags de títulos do hatml. */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "SpaceGrotesk-Bold", serif;
+}
+
+/* Alinhando as lables do fomulário de cadastro para a direita. */
+label {
+    text-align: right;
+}
+
+/* Ajustando as margens do formulário na tela. Assim, criando um espaço entre a margem da tela com a margem do componente. */
+.card {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+/* Definindo o espaço entre os componentes do formulário. Assim, os deixando sem muito espaço entre as linhas. */
+.row {
+    margin: 5px;
+}
+
+/* Ajustando as margens do alert presente no formulário. */
+.alert {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
