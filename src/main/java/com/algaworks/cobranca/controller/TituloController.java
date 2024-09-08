@@ -1,13 +1,18 @@
 package com.algaworks.cobranca.controller;
 
 import com.algaworks.cobranca.model.Titulo;
+import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
 import com.algaworks.cobranca.service.TituloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/titulos")
@@ -22,8 +27,9 @@ public class TituloController {
     }
 
     @RequestMapping("/novo")
-    public String novo() {
-        return "CadastroTitulo";
+    public ModelAndView novo() {
+        this.mv = new ModelAndView("CadastroTitulo");
+        return this.mv;
     }
 
     // Método que irá salvar os dados do formulário.
@@ -38,5 +44,11 @@ public class TituloController {
         }
 
         return this.mv;
+    }
+
+    // Inicializando a lista de Status de Título, sem que tenha a necessidade de atribuí-lo a uma variável ModelAndView.
+    @ModelAttribute("listaStatusTitulo")
+    public List<StatusTitulo> getRelacaoStatus() {
+        return Arrays.asList(StatusTitulo.values());
     }
 }
