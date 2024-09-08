@@ -71,8 +71,8 @@
                 <div class="col-sm-2">
                     <select class="form-control" id="inputStatus" name="status" required>
                         <option value="">Selecionar</option>
-                        <option value="PENDENTE">Pendente</option>
-                        <option value="RECEBIDO">Recebido</option>
+                        <option th:each="status : ${listaStatusTitulo}" th:text="${status.descricao}"
+                                th:value="${status}"></option>
                     </select>
                     <div class="invalid-feedback">
                         Por favor, preencha corretamente o campo: Status.
