@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="layout/template"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Título</title>
+</head>
+
+<section layout:fragment="conteudo">
+    <form action="/titulos" class="needs-validation" method="POST" novalidate>
+
+        <div class="alert alert-success" id="alertNovoCadastro" role="alert"
+             th:if="${!#strings.isEmpty(msgNovoCadastro)}">
+            <span th:text="${msgNovoCadastro}"></span>
+            <button aria-label="Close" class="close" data-dismiss="alert" onclick="$('#alertNovoCadastro').hide()"
+                    type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="clearfix">
+                    <h5 class="titulo-panel">Novo Título</h5>
+                    <a class="btn btn-link aling-link-panel-right" href="/titulos">Pesquisa de Título</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="staticDescricao">Descrição</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" id="staticDescricao" name="descricao" placeholder="Apartamento 404"
+                               required type="text">
+                        <div class="invalid-feedback">
+                            Por favor, preencha corretamente o campo: Descrição.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="inputDataVencimento">Data de Vencimento</label>
+                    <div class="col-sm-2">
+                        <div class="input-group mb-2">
+                            <input class="datepicker_input form-control" id="inputDataVencimento" name="dataVencimento"
+                                   placeholder="dd/mm/aaaa" required type="text"/>
+                            <i class="bi bi-calendar-date input-group-text"></i>
+                            <div class="invalid-feedback">
+                                Por favor, preencha corretamente o campo: Data de Vencimento.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="inputValor">Valor</label>
+                    <div class="col-sm-2">
+                        <input class="form-control formatMonetario" data-decimal="," data-thousands="." id="inputValor"
+                               name="valor" placeholder="0,00" required type="text">
+                        <div class="invalid-feedback">
+                            Por favor, preencha corretamente o campo: Valor.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="inputStatus">Status</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="inputStatus" name="status" required>
+                            <option value="">Selecionar</option>
+                            <option th:each="status : ${listaStatusTitulo}" th:text="${status.descricao}"
+                                    th:value="${status}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor, preencha corretamente o campo: Status.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2 offset-md-2">
+                        <button class="btn btn-primary my-1" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+</html>
