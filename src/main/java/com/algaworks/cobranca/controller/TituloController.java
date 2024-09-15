@@ -47,8 +47,10 @@ public class TituloController {
     }
 
     @RequestMapping
-    public String getPesquisar() {
-        return "PesquisaTitulos";
+    public ModelAndView getPesquisar() {
+        this.mv = new ModelAndView("PesquisaTitulos");
+        this.mv.addObject("titulos", this.tituloService.getTitulos());
+        return this.mv;
     }
 
     // Inicializando a lista de Status de Título, sem que tenha a necessidade de atribuí-lo a uma variável ModelAndView.
