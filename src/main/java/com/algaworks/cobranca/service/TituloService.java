@@ -17,20 +17,12 @@ public class TituloService {
     }
 
     public boolean getSalvar(Titulo titulo) {
-        if (isTituloValido(titulo)) {
-            tituloRepository.save(titulo);
-            retorno = true;
-        }
+        tituloRepository.save(titulo);
+        retorno = true;
         return retorno;
     }
 
     public List<Titulo> getTitulos() {
         return this.tituloRepository.findAll();
-    }
-
-    private boolean isTituloValido(Titulo titulo) {
-        return (!(titulo.getDescricao() == null || titulo.getDescricao().isEmpty()) &&
-                (titulo.getDataVencimento() != null) && (titulo.getValor() != null) &&
-                !(titulo.getStatus() == null || titulo.getStatus().getDescricao().isEmpty()));
     }
 }
