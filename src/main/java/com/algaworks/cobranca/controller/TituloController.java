@@ -6,6 +6,8 @@ import com.algaworks.cobranca.repository.TituloRepository;
 import com.algaworks.cobranca.service.TituloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,19 +31,20 @@ public class TituloController {
     @RequestMapping("/novo")
     public ModelAndView novo() {
         this.mv = new ModelAndView("CadastroTitulo");
+        this.mv.addObject(new Titulo());
         return this.mv;
     }
 
     // Método que irá salvar os dados do formulário.
     @PostMapping
-    public ModelAndView salvar(Titulo titulo) {
+    public ModelAndView salvar(@Validated Titulo titulo, Errors errors) {
         this.mv = new ModelAndView("CadastroTitulo");
 
-        if (this.tituloService.getSalvar(titulo)) {
-            this.mv.addObject("msgNovoCadastro", "Título cadastrado com sucesso!");
-        } else {
-            this.mv.addObject("msgNovoCadastro", "Título não cadastrado!");
+        if (errors.hasErrors()) {
+            return this.mv;
         }
+        this.tituloService.getSalvar(titulo);
+        this.mv.addObject("msgNovoCadastro", "Título cadastrado com sucesso!");
 
         return this.mv;
     }
