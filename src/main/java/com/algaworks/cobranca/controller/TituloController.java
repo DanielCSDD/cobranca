@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,16 +38,16 @@ public class TituloController {
 
     // Método que irá salvar os dados do formulário.
     @PostMapping
-    public ModelAndView salvar(@Validated Titulo titulo, Errors errors) {
-        this.mv = new ModelAndView("CadastroTitulo");
+    public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) {
+        this.mv = new ModelAndView();
 
         if (errors.hasErrors()) {
-            return this.mv;
+            return "CadastroTitulo";
         }
         this.tituloService.getSalvar(titulo);
-        this.mv.addObject("msgNovoCadastro", "Título cadastrado com sucesso!");
+        attributes.addFlashAttribute("msgNovoCadastro", "Título cadastrado com sucesso!");
 
-        return this.mv;
+        return "redirect:/titulos/novo";
     }
 
     @RequestMapping
