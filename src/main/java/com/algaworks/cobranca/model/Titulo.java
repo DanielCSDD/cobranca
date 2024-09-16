@@ -2,6 +2,7 @@ package com.algaworks.cobranca.model;
 
 import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -18,17 +19,24 @@ public class Titulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = " Não pode estar vazio!")
+    @Size(max = 60, message = " Não pode conter mais que 60 caracteres!")
     @Column(name = "descricao")
     private String descricao;
 
+    @NotNull(message = " Não pode estar vazio!")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
+    @NotNull(message = " Não pode estar vazio!")
+    @DecimalMin(value = "0.01", message = " Não pode ser menor que R$ 0,01!")
+    @DecimalMax(value = "9999999.99", message = " Não pode ser maior que 9.999.999,99!")
     @NumberFormat(pattern = "#,##0.00")
     @Column(name = "valor")
     private BigDecimal valor;
 
+    @NotNull(message = " Deverá receber um valor válido!")
     @Enumerated(EnumType.STRING)
     private StatusTitulo status;
 
