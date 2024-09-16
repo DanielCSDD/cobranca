@@ -6,18 +6,9 @@
 <head>
     <title>Cadastro de Título</title>
 </head>
-
 <section layout:fragment="conteudo">
-    <form action="/titulos" class="needs-validation" method="POST" novalidate>
-
-        <div class="alert alert-success" id="alertNovoCadastro" role="alert"
-             th:if="${!#strings.isEmpty(msgNovoCadastro)}">
-            <span th:text="${msgNovoCadastro}"></span>
-            <button aria-label="Close" class="close" data-dismiss="alert" onclick="$('#alertNovoCadastro').hide()"
-                    type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+    <form action="/titulos" method="POST" th:object="${titulo}">
+        <div th:insert="~{layout/mensagem}"></div>
 
         <div class="card">
             <div class="card-header">
@@ -27,51 +18,54 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="form-group row">
+                <div class="form-group row"
+                     th:classappend="${#fields.hasErrors('descricao')} ? 'font-weight-bold text-danger' : ''">
                     <label class="col-sm-2 col-form-label" for="staticDescricao">Descrição</label>
                     <div class="col-sm-4">
                         <input class="form-control" id="staticDescricao" name="descricao" placeholder="Apartamento 404"
-                               required type="text">
-                        <div class="invalid-feedback">
-                            Por favor, preencha corretamente o campo: Descrição.
-                        </div>
+                               th:classappend="${#fields.hasErrors('descricao')} ? 'border border-danger' : ''"
+                               type="text">
+                        <span th:if="!${#fields.detailedErrors('descricao').isEmpty()}"
+                              th:text="${#fields.detailedErrors('descricao').get(0).message}"></span>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row"
+                     th:classappend="${#fields.hasErrors('dataVencimento')} ? 'font-weight-bold text-danger' : ''">
                     <label class="col-sm-2 col-form-label" for="inputDataVencimento">Data de Vencimento</label>
                     <div class="col-sm-2">
                         <div class="input-group mb-2">
                             <input class="datepicker_input form-control" id="inputDataVencimento" name="dataVencimento"
-                                   placeholder="dd/mm/aaaa" required type="text"/>
+                                   placeholder="dd/mm/aaaa" th:classappend="${#fields.hasErrors('dataVencimento')} ? 'border border-danger' : ''"
+                                   type="text"/>
                             <i class="bi bi-calendar-date input-group-text"></i>
-                            <div class="invalid-feedback">
-                                Por favor, preencha corretamente o campo: Data de Vencimento.
-                            </div>
                         </div>
-
+                        <span th:if="!${#fields.detailedErrors('dataVencimento').isEmpty()}"
+                              th:text="${#fields.detailedErrors('dataVencimento').get(0).message}"></span>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row"
+                     th:classappend="${#fields.hasErrors('valor')} ? 'font-weight-bold text-danger' : ''">
                     <label class="col-sm-2 col-form-label" for="inputValor">Valor</label>
                     <div class="col-sm-2">
                         <input class="form-control formatMonetario" data-decimal="," data-thousands="." id="inputValor"
-                               name="valor" placeholder="0,00" required type="text">
-                        <div class="invalid-feedback">
-                            Por favor, preencha corretamente o campo: Valor.
-                        </div>
+                               name="valor" placeholder="0,00" th:classappend="${#fields.hasErrors('valor')} ? 'border border-danger' : ''"
+                               type="text">
+                        <span th:if="!${#fields.detailedErrors('valor').isEmpty()}"
+                              th:text="${#fields.detailedErrors('valor').get(0).message}"></span>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row"
+                     th:classappend="${#fields.hasErrors('status')} ? 'font-weight-bold text-danger' : ''">
                     <label class="col-sm-2 col-form-label" for="inputStatus">Status</label>
                     <div class="col-sm-2">
-                        <select class="form-control" id="inputStatus" name="status" required>
+                        <select class="form-control" id="inputStatus" name="status"
+                                th:classappend="${#fields.hasErrors('status')} ? 'border border-danger' : ''">
                             <option value="">Selecionar</option>
                             <option th:each="status : ${listaStatusTitulo}" th:text="${status.descricao}"
                                     th:value="${status}"></option>
                         </select>
-                        <div class="invalid-feedback">
-                            Por favor, preencha corretamente o campo: Status.
-                        </div>
+                        <span th:if="!${#fields.detailedErrors('status').isEmpty()}"
+                              th:text="${#fields.detailedErrors('status').get(0).message}"></span>
                     </div>
                 </div>
                 <div class="form-group row">
