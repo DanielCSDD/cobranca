@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cobrança</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- Inserindo o cabeçalho da página -->
+<header th:insert="~{layout/cabecalho.html :: headPage}"></header>
+
+<!-- Inserindo o conteúdo na página -->
+<section layout:fragment="conteudo"></section>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/jquery.maskMoney.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
