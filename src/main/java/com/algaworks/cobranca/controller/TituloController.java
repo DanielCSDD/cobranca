@@ -5,6 +5,7 @@ import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
 import com.algaworks.cobranca.service.TituloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -46,7 +47,7 @@ public class TituloController {
             return VIEW_CADASTRO_TITULO;
         }
         this.tituloService.getSalvar(titulo);
-        attributes.addFlashAttribute("msgNovoCadastro", "Título cadastrado com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Título cadastrado com sucesso!");
 
         return "redirect:/titulos/novo";
     }
@@ -58,16 +59,23 @@ public class TituloController {
         return this.mv;
     }
 
-    // Inicializando a lista de Status de Título, sem que tenha a necessidade de atribuí-lo a uma variável ModelAndView.
-    @ModelAttribute("listaStatusTitulo")
-    public List<StatusTitulo> getRelacaoStatus() {
-        return Arrays.asList(StatusTitulo.values());
-    }
-
     @GetMapping("{id}")
     public ModelAndView editar(@PathVariable("id") Titulo titulo) {
         this.mv = new ModelAndView(VIEW_CADASTRO_TITULO);
         this.mv.addObject(titulo);
         return this.mv;
+    }
+
+    @DeleteMapping(value = "{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String excluir(@PathVariable("id") Titulo titulo, RedirectAttributes attributes) {
+        this.tituloService.getExcluir(titulo);
+        attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+        return "redirect:/titulos";
+    }
+
+    // Inicializando a lista de Status de Título, sem que tenha a necessidade de atribuí-lo a uma variável ModelAndView.
+    @ModelAttribute("listaStatusTitulo")
+    public List<StatusTitulo> getRelacaoStatus() {
+        return Arrays.asList(StatusTitulo.values());
     }
 }
