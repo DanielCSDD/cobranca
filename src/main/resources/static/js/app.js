@@ -18,7 +18,7 @@
 })();
 
 /* Configuração de calendário Datepicker */
-$('.datepicker_input').datepicker()
+$('.datepicker_input').datepicker({startDate: "date", todayHighlight: true})
     .on('changeDate', function (ev) {
         $('.datepicker_input').datepicker('hide');
     });
