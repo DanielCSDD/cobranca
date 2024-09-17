@@ -18,7 +18,10 @@
 })();
 
 /* Configuração de calendário Datepicker */
-$('.datepicker_input').datepicker();
+$('.datepicker_input').datepicker()
+    .on('changeDate', function (ev) {
+        $('.datepicker_input').datepicker('hide');
+    });
 
 /* Configuração do campo valor, onde ao digitar um valor ele será formatado de acordo com o que for sendo digitado */
 // prepara o input com a mascara
