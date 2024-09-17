@@ -67,3 +67,8 @@ function onExcluirConfirmado(action, titulo) {
         contentType: 'application/json'
     });
 }
+
+/* Ativando efeito do tooltip da página de pesquisa de títulos, nos botões de editar e excluir. */
+$(function () {
+    $('[rel="tooltip"]').tooltip();
+});
