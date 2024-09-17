@@ -42,12 +42,14 @@
                               th:text="${titulo.status.descricao}"></span>
                     </td>
                     <td class="text-center">
-                        <a class="btn btn-link btn-xs" th:href="@{/titulos/{id}(id=${titulo.id})}">
+                        <a class="btn btn-link btn-xs" data-placement="top"
+                           rel="tooltip" th:href="@{/titulos/{id}(id=${titulo.id})}" title="Editar">
                             <span class="bi bi-pencil"></span>
                         </a>
 
                         <a class="btn btn-link btn-xs" data-target="#exclusaoTituloModal" data-toggle="modal"
-                           th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}">
+                           data-placement="top"
+                           rel="tooltip" th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}" title="Excluir">
                             <span class="bi bi-trash"></span>
                         </a>
                     </td>
