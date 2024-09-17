@@ -22,6 +22,10 @@ public class TituloService {
         return retorno;
     }
 
+    public void getExcluir(Titulo titulo) {
+        this.tituloRepository.delete(titulo);
+    }
+
     public List<Titulo> getTitulos() {
         return this.tituloRepository.findAll();
     }
