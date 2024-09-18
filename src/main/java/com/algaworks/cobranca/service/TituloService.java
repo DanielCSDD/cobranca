@@ -3,6 +3,7 @@ package com.algaworks.cobranca.service;
 import com.algaworks.cobranca.model.Titulo;
 import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
+import com.algaworks.cobranca.repository.filter.TituloFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class TituloService {
         this.tituloRepository.delete(titulo);
     }
 
-    public List<Titulo> getTitulos() {
-        return this.tituloRepository.findAll();
+    public List<Titulo> getTitulos(TituloFilter filter) {
+        return this.tituloRepository.findByDescricaoContaining(filter.getDescricao() == null ? "" : filter.getDescricao());
     }
 
     public String getReceber(Titulo titulo) {
