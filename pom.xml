@@ -78,6 +78,8 @@
     </dependencies>
 
 	<build>
+		<!-- Definindo o nome do arquivo .war para ser depositado em um servido de aplicação. -->
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
