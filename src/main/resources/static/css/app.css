@@ -54,3 +54,11 @@ label {
     float: left;
     margin-top: 2px;
 }
+
+/* O input referente a pesquisa de títulos não estava alinhando corretamente com a margem esquerda da tabela.
+ * Foi verificado que é devido a formatação padrão do col-sm-4, onde o atributo padding-left possui 15px.
+  * Devido a isso foi criado este estilo para compensar essa diferença.
+*/
+.new-formated-align-col-sm-4 {
+    padding-left: 0px !important;
+}
