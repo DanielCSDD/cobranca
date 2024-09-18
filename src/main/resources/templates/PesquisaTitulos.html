@@ -38,6 +38,7 @@
                     <td class="text-center" th:text="|R$ ${{titulo.valor}}|"></td>
                     <td class="text-center">
                         <span class="badge text-wrap"
+                              th:attr="data-role=${titulo.id}"
                               th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"
                               th:text="${titulo.status.descricao}"></span>
                     </td>
@@ -55,6 +56,7 @@
 
                         <a class="btn btn-link btn-xs atualizar-status" data-placement="top" rel="tooltip"
                            th:href="@{/titulos/{id}/receber(id=${titulo.id})}"
+                           th:attr="data-id=${titulo.id}"
                            th:if="${titulo.pendente}" title="Receber">
                             <span class="bi bi-check-square"></span>
                         </a>
