@@ -19,6 +19,23 @@
         </div>
 
         <div class="card-body table-responsive">
+
+            <form action="" method="GET">
+                <div class="form-group row">
+                    <div class="col-sm-4 new-formated-align-col-sm-4">
+                        <div class="input-group">
+                            <input autofocus="autofocus" class="form-control"
+                                   placeholder="Informe a descrição do título"/>
+
+                            <button class="btn btn-light" type="submit">
+                                <span class="bi bi-search"></span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <table class="table table-bordered table-striped table-sm">
                 <thead>
                 <tr>
@@ -50,7 +67,9 @@
 
                         <a class="btn btn-link btn-xs" data-target="#exclusaoTituloModal" data-toggle="modal"
                            data-placement="top"
-                           rel="tooltip" th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}" title="Excluir">
+                           rel="tooltip"
+                           th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}"
+                           title="Excluir">
                             <span class="bi bi-trash"></span>
                         </a>
 
