@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="layout/template"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pesquisa de Títulos</title>
+</head>
+
+<section layout:fragment="conteudo">
+    <div th:insert="~{layout/mensagem}"></div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="clearfix">
+                <h5 class="titulo-panel">Pesquisa de Títulos</h5>
+                <a class="btn btn-link aling-link-panel-right" th:href="@{/titulos/novo}">Novo Título</a>
+            </div>
+        </div>
+
+        <div class="card-body table-responsive">
+
+            <form method="GET" th:action="@{/titulos}" th:object="${filtro}">
+                <div class="form-group row">
+                    <div class="col-sm-4 new-formated-align-col-sm-4">
+                        <div class="input-group">
+                            <input autofocus="autofocus" class="form-control"
+                                   placeholder="Informe a descrição do título"
+                                   th:field="*{descricao}"/>
+
+                            <button class="btn btn-light" type="submit">
+                                <span class="bi bi-search"></span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                <tr>
+                    <th class="col-md-1 text-center">#</th>
+                    <th class="col-md-4">Descrição</th>
+                    <th class="col-md-1 text-center">Data de Vencimento</th>
+                    <th class="col-md-1 text-center">Valor</th>
+                    <th class="col-md-1 text-center">Status</th>
+                    <th class="col-md-1 text-center">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="titulo : ${titulos}">
+                    <td class="text-center" th:text="${titulo.id}"></td>
+                    <td th:text="${titulo.descricao}"></td>
+                    <td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+                    <td class="text-center" th:text="|R$ ${{titulo.valor}}|"></td>
+                    <td class="text-center">
+                        <span class="badge text-wrap"
+                              th:attr="data-role=${titulo.id}"
+                              th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"
+                              th:text="${titulo.status.descricao}"></span>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-link btn-xs" data-placement="top"
+                           rel="tooltip" th:href="@{/titulos/{id}(id=${titulo.id})}" title="Editar">
+                            <span class="bi bi-pencil"></span>
+                        </a>
+
+                        <a class="btn btn-link btn-xs" data-target="#exclusaoTituloModal" data-toggle="modal"
+                           data-placement="top"
+                           rel="tooltip"
+                           th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}"
+                           title="Excluir">
+                            <span class="bi bi-trash"></span>
+                        </a>
+
+                        <a class="btn btn-link btn-xs atualizar-status" data-placement="top" rel="tooltip"
+                           th:href="@{/titulos/{id}/receber(id=${titulo.id})}"
+                           th:attr="data-id=${titulo.id}"
+                           th:if="${titulo.pendente}" title="Receber">
+                            <span class="bi bi-check-square"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(titulos)}">
+                    <td colspan="6">Nenhum título foi encontrado!</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:insert="~{dialogs/DialogConfirmacaoExclusao}"></div>
+    </div>
+</section>
+</html>
