@@ -23,6 +23,9 @@ public class TituloController {
     private static final String VIEW_CADASTRO_TITULO = "CadastroTitulo";
     private static final String VIEW_PESQUISA_TITULO = "PesquisaTitulos";
 
+    private static final String REDIRECT_VIEW_TITULOS = "redirect:/titulos";
+    private static final String REDIRECT_VIEW_NOVO_TITULO = "redirect:/titulos/novo";
+
     private final TituloService tituloService;
     private ModelAndView mv;
 
@@ -49,7 +52,7 @@ public class TituloController {
         this.tituloService.getSalvar(titulo);
         attributes.addFlashAttribute("mensagem", "Título cadastrado com sucesso!");
 
-        return "redirect:/titulos/novo";
+        return REDIRECT_VIEW_NOVO_TITULO;
     }
 
     @RequestMapping
@@ -70,7 +73,12 @@ public class TituloController {
     public String excluir(@PathVariable("id") Titulo titulo, RedirectAttributes attributes) {
         this.tituloService.getExcluir(titulo);
         attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
-        return "redirect:/titulos";
+        return REDIRECT_VIEW_TITULOS;
+    }
+
+    @PutMapping("/{id}/receber")
+    public @ResponseBody String receber(@PathVariable("id") Titulo titulo, RedirectAttributes attributes) {
+        return this.tituloService.getReceber(titulo);
     }
 
     // Inicializando a lista de Status de Título, sem que tenha a necessidade de atribuí-lo a uma variável ModelAndView.
