@@ -52,6 +52,12 @@
                            rel="tooltip" th:attr="data-id=${titulo.id}, data-descricao=${titulo.descricao}, data-valor=${titulo.valor}, data-status=${titulo.status.descricao}" title="Excluir">
                             <span class="bi bi-trash"></span>
                         </a>
+
+                        <a class="btn btn-link btn-xs atualizar-status" data-placement="top" rel="tooltip"
+                           th:href="@{/titulos/{id}/receber(id=${titulo.id})}"
+                           th:if="${titulo.pendente}" title="Receber">
+                            <span class="bi bi-check-square"></span>
+                        </a>
                     </td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(titulos)}">
