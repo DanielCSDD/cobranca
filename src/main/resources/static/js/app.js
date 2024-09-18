@@ -75,3 +75,15 @@ function onExcluirConfirmado(action, titulo) {
 $(function () {
     $('[rel="tooltip"]').tooltip();
 });
+
+/* Função que irá atualizar o status do título na view */
+$(function () {
+    $('.atualizar-status').on('click', function (event) {
+        event.preventDefault();
+
+        var botaoReceber = $(event.currentTarget);
+        var urlReceber = botaoReceber.attr('href');
+
+        console.log('URL: ', urlReceber);
+    });
+});
