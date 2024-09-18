@@ -62,3 +62,20 @@ label {
 .new-formated-align-col-sm-4 {
     padding-left: 0px !important;
 }
+
+/* Implementação da responsividade */
+@media only screen and (max-width: 900px) {
+    /* Alinhando as lables do fomulário de cadastro para a esquerda.
+     * Quando for uma tela menor que 900px.
+     */
+    label {
+        text-align: left;
+    }
+
+    /* Ajustando as margens do formulário na tela.
+     * Quando for uma tela menor que 900px.
+     */
+    .card {
+        margin: 0px;
+    }
+}
