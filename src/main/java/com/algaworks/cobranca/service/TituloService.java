@@ -1,6 +1,7 @@
 package com.algaworks.cobranca.service;
 
 import com.algaworks.cobranca.model.Titulo;
+import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,11 @@ public class TituloService {
 
     public List<Titulo> getTitulos() {
         return this.tituloRepository.findAll();
+    }
+
+    public String getReceber(Titulo titulo) {
+        titulo.setStatus(StatusTitulo.RECEBIDO);
+        this.getSalvar(titulo);
+        return StatusTitulo.RECEBIDO.getDescricao();
     }
 }
