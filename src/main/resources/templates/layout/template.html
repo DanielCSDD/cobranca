@@ -5,10 +5,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Cobrança</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/app.css}" type="text/css">
 </head>
 <body>
 
@@ -18,12 +18,12 @@
 <!-- Inserindo o conteúdo na página -->
 <section layout:fragment="conteudo"></section>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/jquery.maskMoney.js"></script>
-<script src="/js/app.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/jquery.maskMoney.js}"></script>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>

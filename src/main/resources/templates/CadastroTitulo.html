@@ -7,14 +7,14 @@
     <title>Cadastro de Título</title>
 </head>
 <section layout:fragment="conteudo">
-    <form action="/titulos" method="POST" th:object="${titulo}">
+    <form method="POST" th:action="@{/titulos}" th:object="${titulo}">
         <div th:insert="~{layout/mensagem}"></div>
 
         <div class="card">
             <div class="card-header">
                 <div class="clearfix">
                     <h5 class="titulo-panel">Novo Título</h5>
-                    <a class="btn btn-link aling-link-panel-right" href="/titulos">Pesquisa de Título</a>
+                    <a class="btn btn-link aling-link-panel-right" th:href="@{/titulos}">Pesquisa de Título</a>
                 </div>
             </div>
             <div class="card-body">
