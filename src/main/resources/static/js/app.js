@@ -84,6 +84,26 @@ $(function () {
         var botaoReceber = $(event.currentTarget);
         var urlReceber = botaoReceber.attr('href');
 
-        console.log('URL: ', urlReceber);
+        /* Função Ajax para tratar a alteração do status na view sem ter que atualizar a página.
+        * Para isso irá se comunicar diretamente com o controller.
+        */
+        var response = $.ajax({
+            url: urlReceber,
+            type: 'PUT',
+        });
+
+        /* Função que irá atualizar o status do título sem ter que recarregar a tela */
+        // Caso a atualização tenha ororrido com sucesso.
+        response.done(function (data) {
+            var tituloId = botaoReceber.attr('data-id');
+            $('[data-role=' + tituloId + ']').removeClass('badge-danger').addClass('badge-success').html('<span>' + data + '</span>');
+            botaoReceber.hide();
+        });
+
+        // Caso a atualização tenha ocorrido com falha.
+        response.fail(function (data) {
+            console.log(data);
+            alert('Erro ao receber a cobrança!')
+        });
     });
 });
