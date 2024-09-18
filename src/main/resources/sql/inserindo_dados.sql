@@ -1,4 +1,4 @@
-/* Inserindo registros de titulos. */
+/* Inserindo registros na tabela de titulos. */
 insert into cobranca.titulo(data_vencimento, descricao, status, valor)
 values ('2024-09-01', 'Apartamento 001', 'PENDENTE', '500.00');
 insert into cobranca.titulo(data_vencimento, descricao, status, valor)
