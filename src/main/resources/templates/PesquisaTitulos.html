@@ -20,12 +20,13 @@
 
         <div class="card-body table-responsive">
 
-            <form action="" method="GET">
+            <form action="/titulos" method="GET" th:object="${filtro}">
                 <div class="form-group row">
                     <div class="col-sm-4 new-formated-align-col-sm-4">
                         <div class="input-group">
                             <input autofocus="autofocus" class="form-control"
-                                   placeholder="Informe a descrição do título"/>
+                                   placeholder="Informe a descrição do título"
+                                   th:field="*{descricao}"/>
 
                             <button class="btn btn-light" type="submit">
                                 <span class="bi bi-search"></span>
