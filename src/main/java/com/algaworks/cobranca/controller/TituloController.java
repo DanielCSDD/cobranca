@@ -3,6 +3,7 @@ package com.algaworks.cobranca.controller;
 import com.algaworks.cobranca.model.Titulo;
 import com.algaworks.cobranca.model.enuns.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
+import com.algaworks.cobranca.repository.filter.TituloFilter;
 import com.algaworks.cobranca.service.TituloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -56,9 +57,9 @@ public class TituloController {
     }
 
     @RequestMapping
-    public ModelAndView getPesquisar() {
+    public ModelAndView getPesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
         this.mv = new ModelAndView(VIEW_PESQUISA_TITULO);
-        this.mv.addObject("titulos", this.tituloService.getTitulos());
+        this.mv.addObject("titulos", this.tituloService.getTitulos(filtro));
         return this.mv;
     }
 
